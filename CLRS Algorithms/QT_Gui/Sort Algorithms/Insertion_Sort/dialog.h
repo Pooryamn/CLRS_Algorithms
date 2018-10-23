@@ -15,8 +15,13 @@ public:
     explicit Dialog(QWidget *parent = 0);
     ~Dialog();
 
+private slots:
+    void on_btnAdd_clicked();
+
 private:
     Ui::Dialog *ui;
+public slots:
+    void Add();
 };
 
 #endif // DIALOG_H
