@@ -36,7 +36,7 @@ void Insertion_Sort(int *A,int n){
 	for(int j=1;j<n;j++){
 		key = A[j];
         	 i = j-1;
-		while(i>=0 && A[i] > key){
+		while(i>=0 && A[i] > key){ //if we change a[i]<key algorithm will be decresing
 			A[i+1]=A[i];
 			i--;
 		}
