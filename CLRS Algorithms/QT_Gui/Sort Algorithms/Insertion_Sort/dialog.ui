@@ -63,13 +63,13 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>110</y>
+     <y>170</y>
      <width>91</width>
      <height>25</height>
     </rect>
    </property>
    <property name="inputMethodHints">
-    <set>Qt::ImhDigitsOnly</set>
+    <set>Qt::ImhDigitsOnly|Qt::ImhHiddenText</set>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>220</x>
-     <y>80</y>
+     <y>140</y>
      <width>171</width>
      <height>17</height>
     </rect>
@@ -88,7 +88,7 @@
     <string>Enter Your Numbers :</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>220</x>
@@ -113,6 +113,24 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="lbli">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>30</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Insertion sort</string>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

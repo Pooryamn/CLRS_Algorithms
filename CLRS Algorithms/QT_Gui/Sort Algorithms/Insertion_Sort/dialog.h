@@ -13,15 +13,22 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = 0);
+  //  double Arr[1000];
+    int in=0;
     ~Dialog();
 
 private slots:
     void on_btnAdd_clicked();
 
+    void on_btnSort_clicked();
+
 private:
     Ui::Dialog *ui;
+
 public slots:
     void Add();
+    void Sort();
+    void Insertion_Sort(double *A,int n);
 };
 
 #endif // DIALOG_H
