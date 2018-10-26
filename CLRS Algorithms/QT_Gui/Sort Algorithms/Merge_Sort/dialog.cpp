@@ -51,13 +51,18 @@ void Dialog::Sort()
     }
      if(ui->Chbox_mode->isChecked()==false){
          //Merge_sort
+         Merge_Sort(Arr,0,in-1);
      }
      else{
          //Merge_sort_dec
+         Merge_Sort_Dec(Arr,0,in-1);
+     }
+     for(int i=0;i<in;i++){
+         ui->list_sort->addItem(QString::number(Arr[i]));
      }
 }
 
-vodi Dialog::Merge(int arr[], int l, int m, int r){
+void Dialog::Merge(int arr[], int l, int m, int r){
     int i, j, k;
         int n1 = m - l + 1;
         int n2 = r - m;
@@ -146,6 +151,28 @@ void Dialog::Merge_Dec(int arr[],int l , int m,int r){
             arr[k] = R[j];
             j++;
             k++;
+        }
+}
+
+void Dialog::Merge_Sort(int arr[],int l , int r){
+    if (l < r)
+        {
+            int m = l + (r - l) / 2;
+
+            Merge_Sort(arr, l, m);
+            Merge_Sort(arr, m + 1, r);
+            Merge(arr, l, m, r);
+        }
+}
+
+void Dialog::Merge_Sort_Dec(int arr[],int l,int r){
+    if (l < r)
+        {
+            int m = l + (r - l) / 2;
+
+            Merge_Sort_Dec(arr, l, m);
+            Merge_Sort_Dec(arr, m + 1, r);
+            Merge_Dec(arr, l, m, r);
         }
 }
 

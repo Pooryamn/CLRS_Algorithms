@@ -18,11 +18,18 @@ public:
 
 private slots:
     void on_btnAdd_clicked();
+    void on_btnSort_clicked();
+
 
 private:
     Ui::Dialog *ui;
 public slots:
     void Add();
+    void Sort();
+    void Merge_Sort(int arr[], int l, int r);
+    void Merge_Sort_Dec(int arr[], int l, int r);
+    void Merge(int arr[], int l, int m, int r);
+    void Merge_Dec(int arr[], int l, int m, int r);
 };
 
 #endif // DIALOG_H
