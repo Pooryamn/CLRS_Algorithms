@@ -50,12 +50,16 @@ void Dialog::Sort(){
     while(ui->list_sort->count()>0){
         ui->list_sort->takeItem(0);
     }
+    if(ui->Chbox_mode->isChecked()==false){
     Insertion_Sort(Arr,in);
+    }
+    else{
+        Insertion_Sort_dec(Arr,in);
+    }
     for(int i=0;i<in;i++){
         ui->list_sort->addItem(QString::number(Arr[i]));
     }
 }
-
 void Dialog::Insertion_Sort(double *A,int n){
     double key;
     int i;
@@ -63,6 +67,19 @@ void Dialog::Insertion_Sort(double *A,int n){
         key = A[j];
              i = j-1;
         while(i>=0 && A[i] > key){
+            A[i+1]=A[i];
+            i--;
+        }
+        A[i+1]=key;
+    }
+}
+void Dialog::Insertion_Sort_dec(double *A,int n){
+    double key;
+    int i;
+    for(int j=1;j<n;j++){
+        key = A[j];
+             i = j-1;
+        while(i>=0 && A[i] < key){
             A[i+1]=A[i];
             i--;
         }

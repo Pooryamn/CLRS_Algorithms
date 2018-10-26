@@ -29,6 +29,7 @@ public slots:
     void Add();
     void Sort();
     void Insertion_Sort(double *A,int n);
+    void Insertion_Sort_dec(double *A,int n);
 };
 
 #endif // DIALOG_H
