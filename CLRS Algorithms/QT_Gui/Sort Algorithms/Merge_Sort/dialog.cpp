@@ -1,7 +1,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include <QString>
-int Arr[1000];
+double Arr[1000];
 
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
@@ -62,13 +62,13 @@ void Dialog::Sort()
      }
 }
 
-void Dialog::Merge(int arr[], int l, int m, int r){
+void Dialog::Merge(double arr[], int l, int m, int r){
     int i, j, k;
         int n1 = m - l + 1;
         int n2 = r - m;
 
-        int *L = new int[n1];
-        int *R = new int[n2];
+        double *L = new double[n1];
+        double *R = new double[n2];
 
         for (i = 0; i < n1; i++)
             L[i] = arr[l + i];
@@ -109,13 +109,13 @@ void Dialog::Merge(int arr[], int l, int m, int r){
 
 
 
-void Dialog::Merge_Dec(int arr[],int l , int m,int r){
+void Dialog::Merge_Dec(double arr[],int l , int m,int r){
     int i, j, k;
         int n1 = m - l + 1;
         int n2 = r - m;
 
-        int *L = new int[n1];
-        int *R = new int[n2];
+        double *L = new double[n1];
+        double *R = new double[n2];
 
         for (i = 0; i < n1; i++)
             L[i] = arr[l + i];
@@ -154,7 +154,7 @@ void Dialog::Merge_Dec(int arr[],int l , int m,int r){
         }
 }
 
-void Dialog::Merge_Sort(int arr[],int l , int r){
+void Dialog::Merge_Sort(double arr[],int l , int r){
     if (l < r)
         {
             int m = l + (r - l) / 2;
@@ -165,7 +165,7 @@ void Dialog::Merge_Sort(int arr[],int l , int r){
         }
 }
 
-void Dialog::Merge_Sort_Dec(int arr[],int l,int r){
+void Dialog::Merge_Sort_Dec(double arr[],int l,int r){
     if (l < r)
         {
             int m = l + (r - l) / 2;

@@ -26,10 +26,10 @@ private:
 public slots:
     void Add();
     void Sort();
-    void Merge_Sort(int arr[], int l, int r);
-    void Merge_Sort_Dec(int arr[], int l, int r);
-    void Merge(int arr[], int l, int m, int r);
-    void Merge_Dec(int arr[], int l, int m, int r);
+    void Merge_Sort(double arr[], int l, int r);
+    void Merge_Sort_Dec(double arr[], int l, int r);
+    void Merge(double arr[], int l, int m, int r);
+    void Merge_Dec(double arr[], int l, int m, int r);
 };
 
 #endif // DIALOG_H
