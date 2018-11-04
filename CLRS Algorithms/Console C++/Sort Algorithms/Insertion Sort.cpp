@@ -13,7 +13,7 @@ int main() {
 	for (int i = 0; i<n; i++) {
 		cin >> A[i];
 	}
-	//system("clear");
+	system("clear");
 	cout << "Current Array : " << endl;
 	for (int i = 0; i<n; i++) {
 		cout << "[ " << A[i] << " ]  ";
