@@ -39,5 +39,6 @@ for i in range(n):
 
 os.system('clear')
 print(Array)
-print(Bubble_Sort(Array,n))
+Array = Bubble_Sort(Array,n)
+print(Array)
 # end main 
