@@ -30,6 +30,7 @@ using namespace std;
 void Strassen(int n,int **X,int **Y,int **Ans); // main function
 void input(int n , int **A); // function to get matrix
 void output(int n , int **Ans); // pirnt a matrix
+void simple_multiply(int **X,int **Y,int **Ans); // multiplies 2*2 matrices
 
 int main(){
     int **X; // matrix X
@@ -70,7 +71,7 @@ int main(){
 
 
     Strassen(n,X,Y,Ans);
-
+    
     output(n,Ans);
 
     return 0;
@@ -105,4 +106,20 @@ void output(int n , int **Ans){
     }
 }
 
-
+void simple_multiply(int **X,int **Y,int **Ans){
+    for (int i = 0; i < 2; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
+            Ans[i][j] = 0;
+            for (int k = 0; k < 2; k++)
+            {
+                Ans[i][j] = Ans[i][j] + X[i][k] * Y[k][j];
+            }
+            
+        }
+        
+    }
+    
+    
+}
