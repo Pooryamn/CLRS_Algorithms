@@ -13,13 +13,13 @@
         P4 = D * (G - E)
         P5 = (A + D) * (E + H)
         P6 = (B - D) * (G + H)
-        P7 = (A - C) * (E + F)
+        P7 = (C - A) * (E + F)
 
     finally we have :
         
                 | P6 + P5 + P4 - P2     P1 + P2           |
     X * Y =     |                                         |
-                | P3 + P4               P1 + P5 - P3 - P7 |
+                | P3 + P4               P1 + P5 - P3 + P7 |
 
  */
 
@@ -143,6 +143,9 @@ void Strassen(int n,int **X,int **Y,int **Ans){
     if(n == 2){ // last step 
         simple_multiply(X,Y,Ans);
     }
+    else if(n==1){
+        return;
+    }
     else{
 
         for (int i = 0; i < n/2; i++) // divide matrices to 4 sub matrix
@@ -166,7 +169,65 @@ void Strassen(int n,int **X,int **Y,int **Ans){
         Add(n/2,A,D,TmpX); // A + D
         Add(n/2,E,H,TmpY); // E + H
         Strassen(n/2,TmpX,TmpY,P5); // P5 = (A + D) * (E + H)
+
+        // Calcute P3
+        Add(n/2,C,D,TmpX); // C + D
+        Strassen(n/2,TmpX,E,P3); // P3 = E * (C + D)
+
+        // Calcute P1
+        Sub(n/2,F,H,TmpX); // F - H
+        Strassen(n/2,TmpX,A,P1); // A * (F - H)
+
+        // Calcute P4
+        Sub(n/2,G,E,TmpX); // G - E
+        Strassen(n/2,TmpX,D,P4); // D * (G - E)
+
+        // Calcute P2
+        Add(n/2,A ,B,TmpX); // A + B
+        Strassen(n/2,TmpX,H,P2); // H * (A + B);
+
+        // Calcute P7
+        Sub(n/2,C,A,TmpX); // C - A
+        Add(n/2,E,F,TmpY); // E + F
+        Strassen(n/2,TmpX,TmpY,P7); // (A - C) * (E + F)
+
+        // Calcute P6
+        Sub(n/2,B,D,TmpX); //B - D
+        Add(n/2,G,H,TmpY); // G + H
+        Strassen(n/2,TmpX,TmpY,P6); // (B - D) * (G + H)
+
+
+        // Calcute C11
+        Add(n/2,P5,P4,TmpX); // P5 + P4
+        Sub(n/2,TmpX,P2,TmpY); // P5 + P4 - P2
+        Add(n/2,TmpY,P6,C11);// P5 + P4 - P2 + P6
         
+
+        // Calcute C12
+        Add(n/2,P1,P2,C12); // P1 + P2
+
+        // Calcute C21
+        Add(n/2,P3,P4,C12); // P3 + P4
+
+        // Calcute C22
+        Add(n/2,P1,P5,TmpX); // P1 + P5
+        Sub(n/2,TmpX,P3,TmpY); // P1 + P5 - P3
+        Add(n/2,TmpY,P7,C22); // P1 + P5 - P3 + P7
+
+
+        // Set result 
+        for (int i = 0; i < n/2; i++)
+        {            
+            for (int j = 0; j < n/2; j++)
+            {
+                Ans[i][j] = C11[i][j];
+                Ans[i][j+n/2] = C12[i][j];
+                Ans[i+n/2][j] = C21[i][j];
+                Ans[i+n/2][j+n/2] = C22[i][j];
+            }
+            
+        }
+           
     }
 }
 
@@ -225,7 +286,7 @@ void Add(int n, int **X,int ** Y , int **Ans){
     
 }
 
-void Add(int n, int **X,int ** Y , int **Ans){
+void Sub(int n, int **X,int ** Y , int **Ans){
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
