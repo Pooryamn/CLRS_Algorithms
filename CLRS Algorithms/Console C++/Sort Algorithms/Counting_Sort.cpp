@@ -4,7 +4,7 @@ using namespace std;
 
 void input(int *A,int n,int min,int max);
 void print(int *A,int n);
-void Count_sort(int *A,int n,int *res);
+void Count_sort(int *A,int n,int *res,int min,int max);
 
 
 int main(){
@@ -24,9 +24,11 @@ int main(){
     A = new int[n];
 
     input(A,n,min,max);
+    cout << "input : ";
     print(A,n);
-    //Count_sort(A,n,res);
-    //print(res,n);
+    Count_sort(A,n,res,min,max);
+    cout << "output : ";
+    print(res,n);
 
     return 0;
 }
@@ -38,7 +40,7 @@ void input(int *A,int n,int min , int max){
     {
         cout << "["<<i+1<<"] : ";
         cin >> tmp;
-        if(tmp<=max && tmp>-min){
+        if(tmp<=max && tmp>=min){
             A[i] = tmp;
         }
         else{
@@ -58,4 +60,31 @@ void print(int *A,int n){
     }
     cout << ']' << endl;
 }
-void Count_sort(int *A,int n,int *res);
+void Count_sort(int *A,int n,int *res,int min , int max){
+    
+    int range = (max - min) + 1 ;
+    
+    int *index = new int[range];
+
+    for (int i = 0; i < range; i++)
+    {
+        index[i] = 0;
+    }
+
+    for (int i = 0; i < n; i++)
+    {
+        index[A[i]-min]++;
+    }
+        
+    for (int i = 1; i < range; i++)
+    {
+        index[i] = index[i] + index[i - 1];
+    }
+        
+    for (int i = 0; i < n; i++)
+    {
+        res[index[A[i]-min]-1] = A[i];
+        index[A[i]-min]--;
+    }
+    
+}
