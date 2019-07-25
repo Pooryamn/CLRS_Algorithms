@@ -4,7 +4,8 @@ using namespace std;
 
 void show(int* A,int n);
 void Quick_Sort(int* A,int first,int last);
-int partition_last(int* A,int first,int last);
+int partition(int* A,int first,int last);
+int random_partition(int* A,int first,int last);
 
 int main(){
     
@@ -50,13 +51,13 @@ void show(int* A,int n){
 
 void Quick_Sort(int* A,int first,int last){
     if(first < last){
-        int q = partition_last(A,first,last);
+        int q = random_partition(A,first,last);
         Quick_Sort(A,first,q-1);
         Quick_Sort(A,q+1,last);
     }
 }
 
-int partition_last(int* A,int first,int last){
+int partition(int* A,int first,int last){
     int x = A[last];
     int i = first - 1;
 
@@ -78,4 +79,13 @@ int partition_last(int* A,int first,int last){
 
     return i+1;
     
+}
+
+int random_partition(int* A,int first,int last){
+    int rnd = (rand()% (last - first)) + first;
+
+    int tmp = A[last];
+    A[last] = A[rnd];
+    A[rnd] = tmp;
+    return partition(A,first,last);
 }
