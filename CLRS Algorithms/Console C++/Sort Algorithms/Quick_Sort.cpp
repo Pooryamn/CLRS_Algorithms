@@ -6,6 +6,7 @@ void show(int* A,int n);
 void Quick_Sort(int* A,int first,int last);
 int partition(int* A,int first,int last);
 int random_partition(int* A,int first,int last);
+int hoare_partition(int* A,int first,int last);
 
 int main(){
     
@@ -51,8 +52,8 @@ void show(int* A,int n){
 
 void Quick_Sort(int* A,int first,int last){
     if(first < last){
-        int q = random_partition(A,first,last);
-        Quick_Sort(A,first,q-1);
+        int q = hoare_partition(A,first,last);
+        Quick_Sort(A,first,q);
         Quick_Sort(A,q+1,last);
     }
 }
@@ -88,4 +89,37 @@ int random_partition(int* A,int first,int last){
     A[last] = A[rnd];
     A[rnd] = tmp;
     return partition(A,first,last);
+}
+
+int hoare_partition(int* A,int first,int last){
+    int pivot = A[first];
+    int i = first -1 ;
+    int j = last +1 ;
+
+    while (true)
+    {
+        do
+        {
+            i++;
+        } while (A[i] < pivot);
+
+
+        do
+        {
+            j--;
+        } while (A[j] > pivot);
+    
+
+        if (i >=j)
+        {
+            return j;
+        }
+        
+        
+        int tmp = A[i];
+        A[i] = A[j];
+        A[j] = tmp;
+        
+    }
+    
 }
